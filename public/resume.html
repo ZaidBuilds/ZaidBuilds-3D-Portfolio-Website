@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohd Zaid — Resume | ZaidBuilds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b080c;
+      --card: #110e14;
+      --border: #1e1a24;
+      --accent: #c2a4ff;
+      --accent2: #9b6dff;
+      --text: #eae5ec;
+      --muted: #8a8490;
+      --white: #fff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff; color: #111; }
+      .resume { box-shadow: none; border: none; max-width: 100%; }
+      .no-print { display: none !important; }
+      a { color: #111; }
+      .section-title { color: #333; border-color: #ccc; }
+      .accent { color: #6d3cff; }
+      .skill-tag { background: #f0ecf5; color: #333; border-color: #ddd; }
+      .project-card { background: #f9f9f9; border-color: #eee; }
+    }
+
+    .resume {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 50px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(11,8,12,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    .top-bar .logo { font-weight: 700; font-size: 18px; letter-spacing: 1px; }
+    .top-bar .logo span { color: var(--accent); }
+    .top-bar .actions { display: flex; gap: 12px; }
+    .btn {
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    .btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+
+    /* Header */
+    .header { margin-top: 60px; margin-bottom: 45px; }
+    .header h1 {
+      font-size: 42px; font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; margin-bottom: 6px;
+    }
+    .header h1 .accent { color: var(--accent); }
+    .header .subtitle {
+      font-size: 18px; color: var(--accent); font-weight: 500;
+      margin-bottom: 16px; letter-spacing: 0.5px;
+    }
+    .header .contact-row {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 13px; color: var(--muted);
+    }
+    .header .contact-row a { color: var(--muted); text-decoration: none; transition: 0.2s; }
+    .header .contact-row a:hover { color: var(--accent); }
+    .header .contact-row span { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* Sections */
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px; margin-bottom: 20px;
+    }
+
+    /* Summary */
+    .summary {
+      font-size: 15px; color: var(--muted); line-height: 1.8;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      font-style: italic;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .skill-category h4 {
+      font-size: 13px; font-weight: 600; margin-bottom: 8px;
+      color: var(--text);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      padding: 4px 12px; border-radius: 20px; font-size: 11px;
+      font-weight: 500; border: 1px solid var(--border);
+      background: var(--card); color: var(--muted);
+      transition: 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Experience */
+    .exp-item { margin-bottom: 28px; position: relative; padding-left: 20px; }
+    .exp-item::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .exp-item::after {
+      content: ''; position: absolute; left: 3.5px; top: 20px;
+      width: 1px; height: calc(100% + 8px);
+      background: var(--border);
+    }
+    .exp-item:last-child::after { display: none; }
+    .exp-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 4px; flex-wrap: wrap;
+    }
+    .exp-role { font-size: 15px; font-weight: 600; }
+    .exp-company { font-size: 13px; color: var(--muted); }
+    .exp-date {
+      font-size: 11px; color: var(--accent); font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 4px; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-card {
+      padding: 18px; border-radius: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .project-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .project-cat { font-size: 11px; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+    .project-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+    .project-stack {
+      font-size: 10px; color: var(--muted); font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* Education */
+    .edu-item { margin-bottom: 16px; }
+    .edu-item h4 { font-size: 14px; font-weight: 600; }
+    .edu-item p { font-size: 12px; color: var(--muted); }
+
+    /* Stats */
+    .stats-row { display: flex; gap: 30px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+    @media (max-width: 700px) {
+      .resume { padding: 40px 20px; }
+      .header h1 { font-size: 30px; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar no-print">
+    <div class="logo">Zaid//<span>Builds</span></div>
+    <div class="actions">
+      <a href="/" class="btn">← Back to Portfolio</a>
+      <button class="btn btn-primary" onclick="window.print()">⬇ Download PDF</button>
+    </div>
+  </div>
+
+  <div class="resume">
+    <!-- Header -->
+    <div class="header">
+      <h1>Mohd <span class="accent">Zaid</span></h1>
+      <div class="subtitle">AI Solutionist · ZaidBuilds</div>
+      <div class="contact-row">
+        <span>📍 Meerut, India</span>
+        <span>📧 <a href="mailto:collab.zaidbuilds@gmail.com">collab.zaidbuilds@gmail.com</a></span>
+        <span>📱 <a href="tel:+919528386635">+91 95283 86635</a></span>
+        <span>🔗 <a href="https://github.com/ZaidBuilds" target="_blank">github.com/ZaidBuilds</a></span>
+        <span>🔗 <a href="https://linkedin.com/in/zaidbuilds" target="_blank">linkedin.com/in/zaidbuilds</a></span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section">
+      <div class="section-title">Summary</div>
+      <p class="summary">
+        AI Solutionist building production-grade AI-powered systems — LLM orchestration, RAG pipelines, 
+        n8n automations, Voice AI agents, WhatsApp bots, and full-stack React frontends. I wire intelligence 
+        into the core of how businesses run. Self-taught builder shipping real systems daily.
+      </p>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-title">Tech Arsenal</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Core Competencies</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">AI Agents</span>
+            <span class="skill-tag">Agentic AI</span>
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">RAG Pipelines</span>
+            <span class="skill-tag">Generative AI</span>
+            <span class="skill-tag">Automation</span>
+            <span class="skill-tag">Workflows</span>
+            <span class="skill-tag">Data Science</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h4>Languages</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h4>AI / ML Frameworks</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">Ollama</span>
+            <span class="skill-tag">Google ADK</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h4>Full Stack & DevOps</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Vercel</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h4>Databases</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Neo4j</span>
+            <span class="skill-tag">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h4>Automation & Tools</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">Make.com</span>
+            <span class="skill-tag">WhatsApp API</span>
+            <span class="skill-tag">Claude Code</span>
+            <span class="skill-tag">Vosk</span>
+            <span class="skill-tag">Edge TTS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="exp-item">
+        <div class="exp-row">
+          <div>
+            <div class="exp-role">AI Solutionist</div>
+            <div class="exp-company">ZaidBuilds · Self-employed</div>
+          </div>
+          <div class="exp-date">2026 — PRESENT</div>
+        </div>
+        <div class="exp-desc">
+          Building and shipping production-grade AI systems for founders and operators. Voice AI agents, 
+          WhatsApp automation bots, Claude Code integrations, full-stack AI pipelines, and custom LLM 
+          orchestration layers. Targeting $10k/month revenue through real shipping.
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-row">
+          <div>
+            <div class="exp-role">Freelance Developer & Agency Attempt</div>
+            <div class="exp-company">AutomateX · YouTube · Freelance</div>
+          </div>
+          <div class="exp-date">2025</div>
+        </div>
+        <div class="exp-desc">
+          Launched YouTube channel, started freelancing, attempted running an agency. Built client websites 
+          (Lumina Dental, Suman Dental, Eye Urology). Learned positioning, branding, and the importance of 
+          consistent output through real-world execution.
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-row">
+          <div>
+            <div class="exp-role">Self-Taught Builder</div>
+            <div class="exp-company">Independent · Self-taught</div>
+          </div>
+          <div class="exp-date">2022 — 2024</div>
+        </div>
+        <div class="exp-desc">
+          Discovered Python, n8n, APIs, and automation. Built foundation through obsessive self-learning — 
+          YouTube tutorials, documentation, and long nights understanding system architecture. Zero mentor, 
+          zero roadmap, 100% discipline.
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-title">Selected Projects</div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h4>Hey Jarvis</h4>
+          <div class="project-cat">Voice AI Agent</div>
+          <div class="project-desc">Real-time voice assistant with low-latency tool calling, offline recognition (Vosk), hotkey activation, and plugin system.</div>
+          <div class="project-stack">Python · Eel · Ollama · Edge TTS · SQLite</div>
+        </div>
+        <div class="project-card">
+          <h4>OpenClaw</h4>
+          <div class="project-cat">Agentic AI / SaaS</div>
+          <div class="project-desc">Sovereign AI agent capable of recursive task execution on local hardware with reasoning chains.</div>
+          <div class="project-stack">Ollama · Python · Mistral</div>
+        </div>
+        <div class="project-card">
+          <h4>AI Assistant for University</h4>
+          <div class="project-cat">Multi-Agent System</div>
+          <div class="project-desc">Multi-agent university helpdesk handling complex student queries with automated reasoning.</div>
+          <div class="project-stack">n8n · LangGraph · Azure</div>
+        </div>
+        <div class="project-card">
+          <h4>WhatsApp Bulk Messenger</h4>
+          <div class="project-cat">Automation System</div>
+          <div class="project-desc">Bulk messaging tool with document processing, CRM sync, and automated outreach pipelines.</div>
+          <div class="project-stack">WhatsApp API · LangChain · Node.js</div>
+        </div>
+        <div class="project-card">
+          <h4>Revenue OS</h4>
+          <div class="project-cat">AI Sales Pipeline</div>
+          <div class="project-desc">Automated pipeline that qualifies leads and generates personalized outreach at scale.</div>
+          <div class="project-stack">Make.com · GPT-4o · Clay</div>
+        </div>
+        <div class="project-card">
+          <h4>Nexus Core — MCP Servers</h4>
+          <div class="project-cat">Infrastructure</div>
+          <div class="project-desc">Custom Model Context Protocol servers bridging local tools with LLM reasoning.</div>
+          <div class="project-stack">TypeScript · Docker · Go</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-item">
+        <h4>Bachelor of Computer Applications (BCA)</h4>
+        <p>Subharti University, Meerut · 2024 — Present</p>
+      </div>
+      <div class="edu-item">
+        <h4>Higher Secondary (12th)</h4>
+        <p>Completed 2024 · Meerut, India</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="section">
+      <div class="section-title">Impact</div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-val">50+</div>
+          <div class="stat-label">Workflows Shipped</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">8+</div>
+          <div class="stat-label">Services Live</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">13+</div>
+          <div class="stat-label">Client Systems</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">100</div>
+          <div class="stat-label">Days Building in Public</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

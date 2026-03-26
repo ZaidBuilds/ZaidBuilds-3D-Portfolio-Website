@@ -6,9 +6,12 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I'm Mohd Zaid — an AI Solutionist operating under ZaidBuilds, based in
+          Meerut, India. I design and ship AI-powered systems for founders and
+          operators who want results — not slide decks, not demos. Working systems.
+          My work spans the full stack — LLM orchestration, RAG pipelines, n8n
+          automations, WhatsApp bots, Voice AI agents, and React frontends deployed
+          on self-hosted infrastructure. I wire intelligence into the core of how businesses run.
         </p>
       </div>
     </div>

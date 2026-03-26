@@ -53,21 +53,58 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
+          {[
+            {
+              name: "Hey Jarvis",
+              category: "Voice AI Agent",
+              tools: "Python, Edge TTS, Web Speech API, Ollama",
+              image: "/images/heyjarvis.png"
+            },
+            {
+              name: "OpenClaw",
+              category: "Web Scraper API / SaaS",
+              tools: "Next.js, Tailwind, Crawlee, Stripe",
+              image: "/images/openclaw.png"
+            },
+            {
+              name: "ZaidBuilds Hub",
+              category: "Course Platform",
+              tools: "React, Firebase, Stripe, Tailwind",
+              image: "/images/zaidbuilds.png"
+            },
+            {
+              name: "AI Assistant for University",
+              category: "Multi-Agent System",
+              tools: "n8n, LangChain, Flowise, React",
+              image: "/images/ai_university.png"
+            },
+            {
+              name: "Lumina Dental",
+              category: "Business Website",
+              tools: "React, Framer Motion, Tailwind",
+              image: "/images/lumina.png"
+            },
+            {
+              name: "Whatsapp Bulk Messenger",
+              category: "Automation System",
+              tools: "Python, Selenium, WhatsApp Web API",
+              image: "/images/whatsapp.png"
+            },
+          ].map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>0{index + 1}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>{project.name}</h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>{project.tools}</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage image={project.image} alt={project.name} />
             </div>
           ))}
         </div>

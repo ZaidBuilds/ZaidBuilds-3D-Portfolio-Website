@@ -42,11 +42,14 @@ const Loading = ({ percent }: { percent: number }) => {
     target.style.setProperty("--mouse-y", `${y}px`);
   }
 
+  // @ts-ignore
+  const MarqueeComp = typeof Marquee === 'object' && 'default' in Marquee ? Marquee.default : Marquee;
+
   return (
     <>
       <div className="loading-header">
         <a href="/#" className="loader-title" data-cursor="disable">
-          Logo
+          Zaid//Builds
         </a>
         <div className={`loaderGame ${clicked && "loader-out"}`}>
           <div className="loaderGame-container">
@@ -61,10 +64,10 @@ const Loading = ({ percent }: { percent: number }) => {
       </div>
       <div className="loading-screen">
         <div className="loading-marquee">
-          <Marquee>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-          </Marquee>
+          <MarqueeComp>
+            <span> An AI Solutionist</span> <span>A Tech Builder</span>
+            <span> An AI Solutionist</span> <span>A Tech Builder</span>
+          </MarqueeComp>
         </div>
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}
