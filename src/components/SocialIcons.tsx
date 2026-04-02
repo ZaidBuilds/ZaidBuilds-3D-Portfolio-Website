@@ -12,6 +12,7 @@ import HoverLinks from "./HoverLinks";
 const SocialIcons = () => {
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
+    const iconsSection = document.querySelector(".icons-section") as HTMLElement;
 
     social.querySelectorAll("span").forEach((item) => {
       const elem = item as HTMLElement;
@@ -54,6 +55,23 @@ const SocialIcons = () => {
         elem.removeEventListener("mousemove", onMouseMove);
       };
     });
+
+    // Hide social icons when scrolling past Hero section
+    const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const heroHeight = window.innerHeight;
+      if (scrollY > heroHeight * 0.8) {
+        iconsSection.classList.add("icons-hidden");
+      } else {
+        iconsSection.classList.remove("icons-hidden");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (

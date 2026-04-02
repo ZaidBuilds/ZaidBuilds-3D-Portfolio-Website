@@ -1,0 +1,280 @@
+/* ================================
+   TECH ARSENAL — Categorized Cards
+   ================================ */
+
+.techstack-section {
+  position: relative;
+  z-index: 100;
+  background-color: #0b080c;
+  width: 100%;
+  padding: 80px 0 60px;
+  overflow: hidden;
+}
+
+/* Title */
+.techstack-title {
+  font-size: clamp(36px, 4.5vw, 72px);
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin: 0 0 50px;
+  color: #fff;
+}
+
+.techstack-emoji {
+  font-size: 0.85em;
+}
+
+.techstack-accent {
+  color: var(--accentColor);
+  font-style: italic;
+}
+
+/* Categories Grid — 2 columns for a clean layout */
+.tech-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Category Card */
+.tech-category-card {
+  position: relative;
+  background: linear-gradient(145deg, #151219 0%, #0e0c11 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 24px 28px;
+  cursor: default;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+  animation: techCatReveal 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes techCatReveal {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(10deg) translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+  }
+}
+
+.tech-category-card:hover {
+  box-shadow:
+    0 8px 30px rgba(194, 164, 255, 0.1),
+    0 0 0 1px rgba(194, 164, 255, 0.15);
+  border-color: rgba(194, 164, 255, 0.2);
+}
+
+/* Glow follow */
+.tech-cat-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.2s ease;
+}
+
+/* Header (emoji + title) */
+.tech-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-cat-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.tech-cat-title {
+  font-family: "Geist", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  margin: 0;
+}
+
+/* Tags */
+.tech-cat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-tag {
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 5px 14px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #d0cdd4;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  letter-spacing: 0.4px;
+}
+
+.tech-category-card:hover .tech-tag {
+  background-color: rgba(194, 164, 255, 0.08);
+  border-color: rgba(194, 164, 255, 0.2);
+  color: #eae5ec;
+}
+
+.tech-tag:hover {
+  background-color: rgba(194, 164, 255, 0.18) !important;
+  border-color: var(--accentColor) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* See All Projects CTA */
+.tech-projects-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.see-all-projects {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Geist", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #d0cdd4;
+  text-decoration: none;
+  padding: 14px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.see-all-projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(194, 164, 255, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.see-all-projects:hover {
+  border-color: rgba(194, 164, 255, 0.4);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(194, 164, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.see-all-projects:hover::before {
+  opacity: 1;
+}
+
+.see-all-projects svg {
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.see-all-projects span {
+  position: relative;
+  z-index: 1;
+}
+
+.see-all-projects:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ================================
+   Responsive
+   ================================ */
+
+@media only screen and (max-width: 900px) {
+  .techstack-section {
+    padding: 50px 0 40px;
+  }
+
+  .techstack-title {
+    font-size: 30px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+  }
+
+  .tech-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 95%;
+  }
+
+  .tech-category-card {
+    padding: 18px 20px;
+  }
+
+  .tech-cat-title {
+    font-size: 14px;
+  }
+
+  .tech-tag {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .techstack-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .tech-cat-tags {
+    gap: 6px;
+  }
+
+  .tech-tag {
+    font-size: 11px;
+    padding: 3px 9px;
+  }
+}
+
+@media only screen and (min-width: 1950px) {
+  .tech-categories-grid {
+    max-width: 1400px;
+    gap: 22px;
+  }
+
+  .tech-category-card {
+    padding: 30px 36px;
+  }
+
+  .tech-cat-title {
+    font-size: 18px;
+  }
+
+  .tech-tag {
+    font-size: 15px;
+    padding: 7px 18px;
+  }
+}

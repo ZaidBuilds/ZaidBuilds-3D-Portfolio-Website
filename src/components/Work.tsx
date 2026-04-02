@@ -8,44 +8,37 @@ gsap.registerPlugin(useGSAP);
 
 const Work = () => {
   useGSAP(() => {
-  let translateX: number = 0;
+    // 6 cards of ~650px each. 
+    // Total Width is ~3900px. 
+    // On a 1920px screen, we need to scroll about 2500-3000px to see everything.
+    // We'll use 5000px as a safe, generous scroll duration (end)
+    // and -4000px as the final displacement (x) to ensure last card clears center.
+    
+    let timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-section",
+        start: "top top",
+        end: "+=3500",
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        id: "work",
+        invalidateOnRefresh: true,
+        onLeave: () => gsap.set(".work-section", { display: "none" }),
+        onEnterBack: () => gsap.set(".work-section", { display: "block" }),
+      },
+    });
 
-  function setTranslateX() {
-    const box = document.getElementsByClassName("work-box");
-    const rectLeft = document
-      .querySelector(".work-container")!
-      .getBoundingClientRect().left;
-    const rect = box[0].getBoundingClientRect();
-    const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-    let padding: number =
-      parseInt(window.getComputedStyle(box[0]).padding) / 2;
-    translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-  }
+    timeline.to(".work-flex", {
+      x: "-2800px",
+      ease: "none",
+    });
 
-  setTranslateX();
-
-  let timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".work-section",
-      start: "top top",
-      end: `+=${translateX}`, // Use actual scroll width
-      scrub: true,
-      pin: true,
-      id: "work",
-    },
-  });
-
-  timeline.to(".work-flex", {
-    x: -translateX,
-    ease: "none",
-  });
-
-  // Clean up (optional, good practice)
-  return () => {
-    timeline.kill();
-    ScrollTrigger.getById("work")?.kill();
-  };
-}, []);
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getById("work")?.kill();
+    };
+  }, []);
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
