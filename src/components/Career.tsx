@@ -27,6 +27,18 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
+                <h4>Mastering the Stack</h4>
+                <h5>Deep Work · Technologies</h5>
+              </div>
+              <h3>2023</h3>
+            </div>
+            <p>
+              Dedicated the entire year to mastering the fundamental stack. Transitioned from tutorials to real coding. Built early internal tools, explored vector databases, refined API integrations, and truly understood how modern architectures are structured before trying to scale.
+            </p>
+          </div>
+          <div className="career-info-box">
+            <div className="career-info-in">
+              <div className="career-role">
                 <h4>12th Done. BCA Begins.</h4>
                 <h5>Student · Subharti University</h5>
               </div>
