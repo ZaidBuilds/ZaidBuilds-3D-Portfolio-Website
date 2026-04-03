@@ -15,13 +15,13 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Built Myself First</h4>
-                <h5>Self-taught · Saharanpur, India</h5>
+                <h4>12th Done. BCA Begins.</h4>
+                <h5>Student · Saharanpur, India</h5>
               </div>
-              <h3>2022</h3>
+              <h3>2023</h3>
             </div>
             <p>
-              Before any client, before any income — spent a year building myself. Discovered n8n, Python, APIs, automation. No mentor. No roadmap. Just obsession, YouTube tutorials, and long nights figuring out how things connect.
+              Completed board exams from Saharanpur. Got admitted into BCA at Subharti University. Stopped treating AI as a side interest and locked in. Discovered n8n, Python, APIs, and automation — no mentor, no roadmap, just obsession and long nights figuring out how things connect.
             </p>
           </div>
           <div className="career-info-box">
@@ -30,22 +30,10 @@ const Career = () => {
                 <h4>Mastering the Stack</h4>
                 <h5>Deep Work · Technologies</h5>
               </div>
-              <h3>2023</h3>
-            </div>
-            <p>
-              Dedicated the entire year to mastering the fundamental stack. Transitioned from tutorials to real coding. Built early internal tools, explored vector databases, refined API integrations, and truly understood how modern architectures are structured before trying to scale.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>12th Done. BCA Begins.</h4>
-                <h5>Student · Subharti University</h5>
-              </div>
               <h3>2024</h3>
             </div>
             <p>
-              Completed board exams. Got admitted into BCA. Stopped treating AI as a side interest and locked in. Started building real projects — Hey Jarvis, automation scripts, client websites. Working on skills daily.
+              Dedicated the year to mastering the fundamental stack. Transitioned from tutorials to real code. Built early internal tools, Hey Jarvis, automation scripts, and client websites. Explored vector databases, refined API integrations, and understood how modern architectures are truly structured.
             </p>
           </div>
           <div className="career-info-box">
