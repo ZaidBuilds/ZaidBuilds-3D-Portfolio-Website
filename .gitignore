@@ -26,3 +26,5 @@ dist-ssr
 
 backup/
 .env
+# Local Netlify folder
+.netlify
